@@ -6,7 +6,9 @@ def q1
 
   # 以下に回答を記載
   # names += ["斎藤"]
-  names.push("斎藤")
+  # names.push("斎藤") ←複数の要素をまとめて追加可能
+  # 単一要素の追加であれば次のメソッドでも可
+  names << "斎藤"
 
   puts names
 end
