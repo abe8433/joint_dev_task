@@ -103,8 +103,9 @@ def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
-  sports.flatten!
-  sports.uniq!
+  # sports.flatten! ←修正前
+  # sports.uniq!    ←修正前
+  sports.flatten!.uniq!
 
   sports.each.with_index(1) { |sport, i| puts "No#{i} #{sport}" }
 end
@@ -140,8 +141,12 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-   puts data1.has_key?(:age) == true ? "OK" : "NG"
-   puts data2.has_key?(:age) == true ? "OK" : "NG"
+  #  puts data1.has_key?(:age) == true ? "OK" : "NG" ←修正前
+  #  puts data2.has_key?(:age) == true ? "OK" : "NG" ←修正前
+  #  puts data1.has_key?(:age)  出力結果：true ←確認用
+  #  puts data2.has_key?(:age)  出力結果：false ←確認用
+   puts data1.has_key?(:age)  ? "OK" : "NG"
+   puts data2.has_key?(:age)  ? "OK" : "NG"
 end
 
 def q16
