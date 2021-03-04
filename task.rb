@@ -198,8 +198,8 @@ class UserQ18
   end
   def introduce
     if @age >= 20 #←数字（年齢）は適当に設定しました。
-    print "こんにちは、#{@name}と申します。宜しくお願いいたします。"
-    else print "はいさいまいど〜、#{@name}です！！！"
+    print "こんにちは、#{@name}と申します。宜しくお願いいたします。" #←「puts」にすると出力に無駄な改行が入ってしまうので注意！
+    else print "はいさいまいど〜、#{@name}です！！！" #←「puts」にすると出力に無駄な改行が入ってしまうので注意！
     end
   end
 end
