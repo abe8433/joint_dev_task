@@ -252,17 +252,32 @@ class Zoo
     @entry_fee = entry_fee
   end
 
-  def info_entry_fee(users) #↓②以下のif文をもっと簡潔に書けないか？
-    if (0..5).include?(users.age) #←③条件を「<=」や「>=」を使って書けないのか？
+  # ↓ここから修正前（復習のために残す）
+  # def info_entry_fee(users) #↓②以下のif文をもっと簡潔に書けないか？
+  #   if (0..5).include?(users.age) #←③条件を「<=」や「>=」を使って書けないのか？
+  #     entry_fee = @entry_fee[:infant]    【参考1】条件の別の書き方
+  #   elsif (6..12).include?(users.age)      users.age >= 0 && users.age <= 5
+  #     entry_fee = @entry_fee[:children]    users.age >= 6 && users.age <= 12
+  #   elsif (13..64).include?(users.age)     users.age >= 13 && users.age <= 64
+  #     entry_fee = @entry_fee[:adult]       users.age >= 65 && users.age <= 120
+  #   else (65..120).include?(users.age) 
+  #     entry_fee = @entry_fee[:senior]    【参考2】引数を「users」としているが出力部分に合わせて「user」としたほうが良い。
+  #   end                                    ここはeach文で回した処理のひとつひとつを受け取っているイメージなので, 単数形の方が自然
+  #   puts "#{users.name}さんの入場料金は #{entry_fee} 円です。"
+  # end #←ここまで修正前、下でcase文を使って書き直し(引数も修正)
+
+  def info_entry_fee(user)
+    case user.age
+    when 0..5
       entry_fee = @entry_fee[:infant]
-    elsif (6..12).include?(users.age)
+    when 6..12
       entry_fee = @entry_fee[:children]
-    elsif (13..64).include?(users.age)
+    when 13..64
       entry_fee = @entry_fee[:adult]
-    else (65..120).include?(users.age) 
+    when 65..120
       entry_fee = @entry_fee[:senior]
     end
-    puts "#{users.name}さんの入場料金は #{entry_fee} 円です。"
+    puts "#{user.name}さんの入場料金は #{entry_fee} 円です。"
   end
 end
 
