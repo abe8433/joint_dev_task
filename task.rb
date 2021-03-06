@@ -196,10 +196,19 @@ class UserQ18
     @name = name 
     @age = age
   end
-  def introduce
-    if @age >= 20 #←数字（年齢）は適当に設定しました。
-    print "こんにちは、#{@name}と申します。宜しくお願いいたします。" #←「puts」にすると出力に無駄な改行が入ってしまうので注意！
-    else print "はいさいまいど〜、#{@name}です！！！" #←「puts」にすると出力に無駄な改行が入ってしまうので注意！
+
+  # def introduce #←ここから再修正前（復習のために残す）
+  #   if @age >= 20 #←数字（年齢）は適当に設定しました。
+  #   print "こんにちは、#{@name}と申します。宜しくお願いいたします。" #←「puts」にすると出力に無駄な改行が入ってしまうので注意！
+  #   else print "はいさいまいど〜、#{@name}です！！！" #←「puts」にすると出力に無駄な改行が入ってしまうので注意！
+  #   end
+  # end #←ここまで再修正前、下でintroduceメソッドに対してputsで出力するので、「print」は不要
+
+  def introduce #←ここから再修正後
+    if @age >= 20
+      "こんにちは、#{@name}と申します。宜しくお願いいたします。"
+    else
+      "はいさいまいど〜、#{@name}です！！！"
     end
   end
 end
@@ -229,12 +238,32 @@ end
 
 class UserQ20
   # 以下に回答を記載
-
+  attr_reader :name, :age
+  def initialize(name:, age:)
+    @name = name
+    @age = age
+  end
 end
 
 class Zoo
   # 以下に回答を記載
+  def initialize(name:, entry_fee:) #←①「name」の処理はこれで終わり？
+    # @zoo_name = name ←今回は不要？
+    @entry_fee = entry_fee
+  end
 
+  def info_entry_fee(users) #↓②以下のif文をもっと簡潔に書けないか？
+    if (0..5).include?(users.age) #←③条件を「<=」や「>=」を使って書けないのか？
+      entry_fee = @entry_fee[:infant]
+    elsif (6..12).include?(users.age)
+      entry_fee = @entry_fee[:children]
+    elsif (13..64).include?(users.age)
+      entry_fee = @entry_fee[:adult]
+    else (65..120).include?(users.age) 
+      entry_fee = @entry_fee[:senior]
+    end
+    puts "#{users.name}さんの入場料金は #{entry_fee} 円です。"
+  end
 end
 
 
