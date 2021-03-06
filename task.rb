@@ -266,21 +266,34 @@ class Zoo
   #   puts "#{users.name}さんの入場料金は #{entry_fee} 円です。"
   # end #←ここまで修正前、下でcase文を使って書き直し(引数も修正)
 
+  # def info_entry_fee(user) #←ここから再修正前（復習のために残す）
+  #   case user.age
+  #   when 0..5
+  #     entry_fee = @entry_fee[:infant]
+  #   when 6..12
+  #     entry_fee = @entry_fee[:children]
+  #   when 13..64
+  #     entry_fee = @entry_fee[:adult]
+  #   when 65..120
+  #     entry_fee = @entry_fee[:senior]
+  #   end
+  #   puts "#{user.name}さんの入場料金は #{entry_fee} 円です。"
+  # end #←ここまで再修正前、下でリファクタリング
+
   def info_entry_fee(user)
-    case user.age
+    entry_fee = case user.age
     when 0..5
-      entry_fee = @entry_fee[:infant]
+      @entry_fee[:infant]
     when 6..12
-      entry_fee = @entry_fee[:children]
+      @entry_fee[:children]
     when 13..64
-      entry_fee = @entry_fee[:adult]
+      @entry_fee[:adult]
     when 65..120
-      entry_fee = @entry_fee[:senior]
+      @entry_fee[:senior]
     end
     puts "#{user.name}さんの入場料金は #{entry_fee} 円です。"
   end
 end
-
 
 def q20
   # ここは変更しないで下さい（動物園・ユーザー情報は変更していただいてOKです）
